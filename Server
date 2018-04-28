@@ -1,0 +1,23 @@
+import socket
+import threading
+port = 5055
+s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+s.connect(("192.168.1.1",80))
+s.setblocking(0)
+host=s.getsockname()[0]
+print(host)
+TCP = socket.socket()
+Portfree=False
+while Portfree==False:
+    try:
+        TCP.bind((host,port))
+        Portfree=True
+    except:
+        port+=1
+print("Server Socket",host,":",port,"is up")
+def Listen(TCP):
+    TCP.listen(1)
+    conn, addr = TCP.accept()
+    print("stop")
+t=threading.Thread(target=Listen,args=(TCP,))
+t.start()
