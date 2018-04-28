@@ -1,5 +1,6 @@
 import socket
 import threading
+import pickle
 port = 5055
 s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 s.connect(("192.168.1.1",80))
@@ -15,9 +16,19 @@ while Portfree==False:
     except:
         port+=1
 print("Server Socket",host,":",port,"is up")
+def Client(conn, addr, TCP):
+    while True:
+        try:
+            data = conn.recv(1024)
+            print(pickle.loads(data))
+        except:
+            pass
 def Listen(TCP):
     TCP.listen(1)
     conn, addr = TCP.accept()
     print("stop")
+    t=threading.Thread(target=Client,args=(conn,addr,TCP,))
+    t.start()
+    
 t=threading.Thread(target=Listen,args=(TCP,))
 t.start()
