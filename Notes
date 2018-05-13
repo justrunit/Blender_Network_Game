@@ -1,1 +1,11 @@
-Look into Switch cases for python to know exactly what your are doing fro different cases
+-------Server-------
+Is always sending and recieving data, but do it in batches, so it sends 
+all the object data at once for all the clients, not having them on seperate threads, this will give the faster computers
+an advantage
+
+-------Client-------
+Have the Client only send Data when necessary. so any time actions are given to a unit, that is the only time
+data should be sent, simply clicking on a unit has no effect on other clients, so is not necessary data. unit commands
+are the only data that should be sent the the server
+
+
