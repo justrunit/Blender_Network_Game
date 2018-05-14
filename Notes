@@ -8,4 +8,8 @@ Have the Client only send Data when necessary. so any time actions are given to 
 data should be sent, simply clicking on a unit has no effect on other clients, so is not necessary data. unit commands
 are the only data that should be sent the the server
 
+At first I thought I woud have to seperate the incoming data on the client side based on the different Clients.
+I have now realized I can just assign an id to the unit with its team and other data needed. the client is just a visual
+representation of what is occuring on the server
+
 
